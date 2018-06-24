@@ -1,0 +1,25 @@
+
+5
+down vote
+Static variables live the life of the program, there is only one copy
+
+Locals (Autos) get a new copy on the stack each function call.
+
+Parameters passed by value get a new copy as well.
+
+Parameters passed by reference (pointer) point to the copy that's passed to them. Therefore if it's a local in a recursive execution, it might be a unique copy; but usually it's a reference to a variable that called the function before the recursion started, therefore, the same copy.
+
+It's better to do the functionality you're doing by passing a pointer to a variable, you have more control over subsequent instances of recursion.
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+up vote
+4
+down vote
+Your understanding fairly accurate.
+
+static means there is one version of the variable. Each time a function is called that contains a static variable the variable will have the last value assigned to it. A global variable can also be marked static which means its scope is limited to that file.
+
+When a function is called its local variables are placed on the call stack. This stack is pushed for each function call and then popped when each function exists. A recursive call just keeps pushing a new copy of the same function onto the stack.
+
