@@ -23,3 +23,12 @@ static means there is one version of the variable. Each time a function is calle
 
 When a function is called its local variables are placed on the call stack. This stack is pushed for each function call and then popped when each function exists. A recursive call just keeps pushing a new copy of the same function onto the stack.
 
+-------------------------------------------------------------------------------------------------------------------
+
+If a variable is declared static in a function, will the same variable/same copy be used for all recursive calls of that function?
+
+Yes, as your code sample shows
+
+If the variable is not declared static (e.g, simply "int x"), will each recursive call to the function have its own copy of that variable? If yes, is that the way it normally happens when a function is called from other function, including the recursive calls?
+
+Yes, each call will have it's own stack frame with a copy of each local variable. This is what happens for every function call, whether they are recursive or not. And yes, this very principle allows, among other things, recursion.
